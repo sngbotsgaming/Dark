@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Dark - First Person Room Escape</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+</head>
+<body>
+  <div id="game">
+    <canvas id="gameCanvas"></canvas>
+    <div id="hud">
+      <div id="wakeupMessage" class="wake-message hidden">Waking up...</div>
+      <div id="controlsHint" class="controls-hint hidden">Click to look around | WASD to move</div>
+      <div id="screenWhiteout" class="screen-whiteout hidden"></div>
+    </div>
+  </div>
+  <!-- Start screen overlay -->
+  <div id="startScreen" class="start-screen">
+    <div class="rotating-bg" aria-hidden="true"></div>
+    <div class="center-panel">
+      <button id="startBtn" class="menu-btn">Play</button>
+      <button id="settingsBtn" class="menu-btn">Settings</button>
+
+      <div id="settingsPanel" class="settings-panel hidden" role="dialog" aria-label="Settings">
+        <div class="settings-row">
+          <label for="audioRange">Audio</label>
+          <input id="audioRange" type="range" min="0" max="100" value="80">
+          <span id="audioValue">80</span>
+        </div>
+
+        <div class="settings-row">
+          <label for="brightnessRange">Brightness</label>
+          <input id="brightnessRange" type="range" min="0" max="100" value="100">
+          <span id="brightnessValue">100</span>
+        </div>
+
+        <fieldset class="settings-fieldset">
+          <legend>Controls</legend>
+          <div class="control-row">Move Forward: <button class="keybind-btn" data-action="forward">W</button></div>
+          <div class="control-row">Move Backward: <button class="keybind-btn" data-action="backward">S</button></div>
+          <div class="control-row">Move Left: <button class="keybind-btn" data-action="left">A</button></div>
+          <div class="control-row">Move Right: <button class="keybind-btn" data-action="right">D</button></div>
+          <div class="control-row">Pause: <button class="keybind-btn" data-action="pause">P</button></div>
+        </fieldset>
+
+        <div class="settings-actions">
+          <button id="resetDefaults" class="settings-action">Reset Defaults</button>
+          <button id="applySettings" class="settings-action">Apply</button>
+          <button id="closeSettings" class="settings-action">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="brightnessOverlay" class="brightness-overlay" aria-hidden="true"></div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+  <script src="game.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>

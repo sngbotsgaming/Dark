@@ -1,0 +1,65 @@
+* { box-sizing: border-box; }
+body { font-family: Arial, Helvetica, sans-serif; background: #0b0b0f; color: #e6e6e6; display:flex; align-items:center; justify-content:center; height:100vh; margin:0; overflow: hidden; }
+#game { width: 100vw; height: 100vh; position: relative; }
+canvas { width: 100%; height: 100%; display: block; }
+#hud { position: absolute; top: 20px; left: 20px; z-index: 10; }
+#wakeupMessage { font-size: 2rem; font-weight: bold; color: #ffffff; animation: fadeInOut 3s ease-in-out; }
+#controlsHint { font-size: 1rem; color: #aaaaaa; }
+#screenWhiteout { position: fixed; inset: 0; background: white; pointer-events: none; z-index: 5; opacity: 0; transition: opacity 0.1s linear; }
+#screenWhiteout.hidden { display: none; }
+#inGameStartBtn { margin-top:8px; padding:8px 12px; border-radius:6px; background:#1e90ff; border:none; color:white; cursor:pointer; font-weight: 600; }
+#inGameStartBtn:hover { background: #4169E1; }
+#inGameStartBtn:active { transform: translateY(1px); }
+
+/* Start screen styles */
+.start-screen { position:fixed; inset:0; display:flex; align-items:center; justify-content:center; z-index:50; overflow:hidden; }
+.rotating-bg { position:absolute; inset:-20%; background: linear-gradient(180deg,#07070a 0%, #111 100%); background-size:cover; filter: blur(4px) contrast(1.02) saturate(1.03) brightness(0.85); transform-origin:center center; animation:subtle-move 8s ease-in-out infinite alternate; width:140%; height:140%; }
+
+.center-panel { position:relative; z-index:60; display:flex; flex-direction:column; align-items:center; gap:20px; }
+.menu-btn { width:320px; max-width:80vw; padding:20px 26px; background:#4169E1; color:#fff; border:none; border-radius:12px; font-size:1.6rem; font-weight:700; box-shadow:0 8px 20px rgba(65,105,225,0.25); cursor:pointer; transition: transform .12s ease, box-shadow .12s ease; }
+.menu-btn:hover { transform: translateY(-4px); box-shadow:0 14px 32px rgba(65,105,225,0.32); }
+
+.settings-panel { margin-top:12px; display:flex; flex-direction:column; gap:10px; align-items:center; padding:14px; background:rgba(0,0,0,0.45); border-radius:10px; backdrop-filter: blur(6px); }
+.settings-panel.hidden { display: none; }
+.settings-option { width:220px; padding:10px 12px; border-radius:8px; border:none; background:#1f2937; color:#fff; cursor:pointer; }
+.hidden { display:none; }
+
+@keyframes fadeInOut { 
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.7; }
+}
+
+@keyframes spin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+
+@keyframes pan-ltr {
+	from { background-position: 0% 50%; }
+	to   { background-position: 100% 50%; }
+}
+
+@keyframes subtle-move {
+  from { transform: translateX(-3%) scale(1.02); }
+  to   { transform: translateX(3%) scale(1.02); }
+}
+
+/* Removed apple overlay — images not required for this project. */
+
+/* Responsive tweaks */
+@media (max-width:480px) {
+	.menu-btn { width:260px; font-size:1.25rem; padding:16px 18px; }
+}
+
+/* Settings UI specifics */
+.settings-row { width:320px; max-width:86vw; display:flex; align-items:center; gap:12px; justify-content:space-between; }
+.settings-row label { flex:0 0 110px; text-align:left; font-weight:600; }
+.settings-row input[type="range"] { flex:1 1 auto; }
+.settings-row span { width:36px; text-align:right; }
+
+.settings-fieldset { width:320px; max-width:86vw; border:1px solid rgba(255,255,255,0.06); padding:8px 12px; border-radius:8px; }
+.control-row { display:flex; justify-content:space-between; padding:6px 0; }
+.keybind-btn { min-width:84px; padding:6px 10px; border-radius:6px; border:none; background:#2b3440; color:#fff; cursor:pointer; }
+
+.settings-actions { display:flex; gap:8px; margin-top:8px; }
+.settings-action { padding:8px 12px; border-radius:8px; border:none; background:#334155; color:#fff; cursor:pointer; }
+
+/* Brightness overlay sits above game canvas but below start UI */
+.brightness-overlay { position:fixed; inset:0; background:#000; pointer-events:none; z-index:40; opacity:0; transition:opacity 200ms linear; }
