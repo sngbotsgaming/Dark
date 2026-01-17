@@ -5,7 +5,9 @@
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Dark - First Person Room Escape</title>
   <link rel="stylesheet" href="style.css">
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+  <style>
+    #gameContainer { width: 100vw; height: 100vh; }
+  </style>
 </head>
 <body>
   <div id="game">
@@ -15,6 +17,7 @@
       <div id="screenWhiteout" class="screen-whiteout hidden"></div>
     </div>
   </div>
+
   <!-- Start screen overlay -->
   <div id="startScreen" class="start-screen">
     <div class="rotating-bg" aria-hidden="true"></div>
@@ -47,16 +50,6 @@
             <option value="1" selected>1x (Normal)</option>
             <option value="2">2x (Fast)</option>
             <option value="3">3x (Very Fast)</option>
-            <option value="5">5x (Lightning)</option>
-          </select>
-        </div>
-
-        <div class="settings-row">
-          <label for="graphicsSelect">Graphics</label>
-          <select id="graphicsSelect">
-            <option value="low">Low</option>
-            <option value="medium">Medium</option>
-            <option value="high" selected>High</option>
           </select>
         </div>
 
@@ -66,6 +59,7 @@
           <div class="control-row">Move Backward: <button class="keybind-btn" data-action="backward">S</button></div>
           <div class="control-row">Move Left: <button class="keybind-btn" data-action="left">A</button></div>
           <div class="control-row">Move Right: <button class="keybind-btn" data-action="right">D</button></div>
+          <div class="control-row">Jump: <button class="keybind-btn" data-action="jump">Space</button></div>
           <div class="control-row">Pause: <button class="keybind-btn" data-action="pause">P</button></div>
         </fieldset>
 
@@ -81,6 +75,6 @@
   <div id="brightnessOverlay" class="brightness-overlay" aria-hidden="true"></div>
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
-  <script src="app.js"></script>
+  <script src="app_v2.js"></script>
 </body>
 </html>
